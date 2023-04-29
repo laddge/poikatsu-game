@@ -3,7 +3,7 @@ import MainView from '@/components/views/MainView.vue'
 </script>
 
 <template>
-  <div>
+  <div ontouchstart>
     <MainView />
   </div>
 </template>
