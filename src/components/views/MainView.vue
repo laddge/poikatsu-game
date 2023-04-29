@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3 p-3 h-0 wallet md:h-auto">
-        <div v-for="pmt in ['A Card', 'B Point', 'C Club']" class="bg-base-300 px-3 py-6 lg:px-6 rounded-box">
+        <div v-for="pmt in ['A Card', 'B Point', 'C Club']" class="bg-base-200 px-3 py-6 lg:px-6 rounded-box">
           <div class="text-lg text-center">
             {{ pmt }}
           </div>
@@ -45,7 +45,7 @@
           </div>
           <button class="btn btn-xs btn-primary w-full mt-2">+ チャージ</button>
         </div>
-        <div class="bg-base-300 px-3 py-6 lg:px-6 rounded-box">
+        <div class="bg-base-200 px-3 py-6 lg:px-6 rounded-box">
           <div class="text-lg text-center">
             現金
           </div>
