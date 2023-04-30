@@ -11,7 +11,8 @@
   "dependencies": {
     "daisyui": "^2.51.6",
     "pinia": "^2.0.35",
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "vue-final-modal": "^4.4.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
