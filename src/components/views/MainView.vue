@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { items } from '@/assets/items'
+
+const item = items[Math.floor(Math.random() * items.length)]
 </script>
 
 <template>
@@ -7,10 +10,10 @@
       1 / 1 (日)
     </div>
     <div class="rounded-box bg-base-200 max-w-xl mx-auto mt-3 p-8">
-      <img src="https://1.bp.blogspot.com/-ZvxBWXjruCU/UkJMDLIMRwI/AAAAAAAAYQQ/FrNA1aboBX0/s800/shoes_sneaker.png" alt="shoes_sneaker" class="h-20 mx-auto my-6" />
+      <img :src="item.img" :alt="item.img.replace(/.+\/(.+?)\..+(.*)?$/, '$1')" class="h-20 mx-auto my-6" />
       <div class="text-lg text-center font-bold">
-        <p>スニーカー</p>
-        <p>¥6200</p>
+        <p>{{ item.name }}</p>
+        <p>¥ {{ item.price.toLocaleString() }}</p>
       </div>
       <select class="select w-full mt-6">
         <option>現金</option>
