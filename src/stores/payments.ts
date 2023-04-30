@@ -149,6 +149,7 @@ export const usePaymentsStore = defineStore('payments', () => {
   ])
 
   const charge = (id: string, amount: number) => {
+    const pay = wallet.value.filter(p => p.id == id)[0]
     if (cash.value < amount) return
     cash.value -= amount
     pay.balance += amount
