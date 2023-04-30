@@ -1,4 +1,4 @@
-interface Item {
+export type Item = {
   name: string
   price: number
   img: string
