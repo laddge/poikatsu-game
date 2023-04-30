@@ -7,7 +7,7 @@ type Point = {
   point: number
 }
 
-type Pay = {
+export type Pay = {
   id: string
   name: string
   desc: string
@@ -15,6 +15,19 @@ type Pay = {
   points: Point[]
   expiration: number
   returnRate: (date: Date, item: Item) => number
+}
+
+export const sumPoints = (pay: Pay): number => {
+  const points = pay.points.map(point => point.point)
+  if (points) {
+    let sum: number = 0
+    for (const p of points) {
+      sum += p
+    }
+    return sum
+  } else {
+    return 0
+  }
 }
 
 export const usePaymentsStore = defineStore('payments', () => {
@@ -136,7 +149,6 @@ export const usePaymentsStore = defineStore('payments', () => {
   ])
 
   const charge = (id: string, amount: number) => {
-    const pay = wallet.value.filter(pay => pay.id == id)[0]
     if (cash.value < amount) return
     cash.value -= amount
     pay.balance += amount
