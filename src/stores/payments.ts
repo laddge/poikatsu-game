@@ -7,7 +7,7 @@ type Point = {
   point: number
 }
 
-type Payment = {
+type Pay = {
   id: string
   name: string
   desc: string
@@ -18,7 +18,11 @@ type Payment = {
 }
 
 export const usePaymentsStore = defineStore('payments', () => {
-  const payments = ref<Payment[]>([
+  const count = ref(0)
+
+  const cash = ref(100000)
+
+  const wallet = ref<Pay[]>([
     {
       id: 'mercury',
       name: 'Mercuryポイント',
@@ -131,22 +135,29 @@ export const usePaymentsStore = defineStore('payments', () => {
     },
   ])
 
+  const charge = (id: string, amount: number) => {
+    const pay = wallet.value.filter(pay => pay.id == id)[0]
+    if (cash.value < amount) return
+    cash.value -= amount
+    pay.balance += amount
+  }
+
   const expire = (date: Date) => {
     const res = []
-    for (const payment of payments.value) {
-      if (payment.expiration != -1) {
+    for (const pay of wallet.value) {
+      if (pay.expiration != -1) {
         let expired: number = 0
-        for (const point of payment.points) {
-          if (date.getTime() - point.date.getTime() >= payment.expiration * 86400000) {
+        for (const point of pay.points) {
+          if (date.getTime() - point.date.getTime() >= pay.expiration * 86400000) {
             expired += point.point
           }
         }
-        res.push({ id: payment.id, expired })
-        payment.points = payment.points.filter(point => date.getTime() - point.date.getTime() < payment.expiration * 86400000)
+        res.push({ id: pay.id, expired })
+        pay.points = pay.points.filter(point => date.getTime() - point.date.getTime() < pay.expiration * 86400000)
       }
     }
     return res
   }
 
-  return { payments, expire }
+  return { count, cash, wallet, charge, expire }
 })
